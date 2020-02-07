@@ -9,12 +9,8 @@ def MoveLeft(CurrentNode):
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
 
-	blankspot=np.where(board==0) #Find the location of the blank space
-	blank_row=blankspot[0] #new variables to make it easy to keep track of
-	blank_col=blankspot[1]
-
-	print(blankspot)
-
+	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
+	
 	if(blank_col==0): #Blank spot is on the left edge; cannot be moved left
 		if verbose==True:
 			print("Blank space is at the left edge of the board and cannot be moved left.")
@@ -40,11 +36,7 @@ def MoveRight(CurrentNode):
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
 
-	blankspot=np.where(board==0) #Find the location of the blank space
-	blank_row=blankspot[0] #new variables to make it easy to keep track of
-	blank_col=blankspot[1]
-
-	print(blankspot)
+	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
 
 	if(blank_col==num_cols-1): #Blank spot is on the right edge; cannot be moved right
 		if verbose==True:
@@ -74,11 +66,8 @@ def MoveUp(CurrentNode):
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
 
-	blankspot=np.where(board==0) #Find the location of the blank space
-	blank_row=blankspot[0] #new variables to make it easy to keep track of
-	blank_col=blankspot[1]
+	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
 
-	print(blankspot)
 
 	if(blank_row==0): #Blank spot is on the top edge; cannot be moved up
 		if verbose==True:
@@ -105,11 +94,8 @@ def MoveDown(CurrentNode):
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
 
-	blankspot=np.where(board==0) #Find the location of the blank space
-	blank_row=blankspot[0] #new variables to make it easy to keep track of
-	blank_col=blankspot[1]
-
-	print(blankspot)
+	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
+	
 	print(num_rows)
 	if(blank_row==num_rows-1): #Blank spot is on the bottom edge; cannot be moved down
 		if verbose==True:
