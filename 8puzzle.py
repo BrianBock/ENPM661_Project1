@@ -8,11 +8,7 @@ from printboard import printboard
 import actions
 
 
-verbose=True #set this to True for more print statements (may be slower)
-
-
-
-#Create necessary functions
+#verbose=True #set this to True for more print statements (may be slower)
 
 
 # Set up board and goal
