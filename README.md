@@ -1,4 +1,4 @@
 # ENPM661 Project 1
 
 
-Libraries used: numpy
+Libraries used: numpy, math
