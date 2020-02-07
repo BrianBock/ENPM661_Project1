@@ -53,9 +53,9 @@ def flatboard_spaceless(board):
 			flatboard=flatboard+str(board[row,col])
 			i+=1
 
-	flatboard_clean=flatboard[1:-1] #Clean up the list style brackets
+	#flatboard_clean=flatboard[1:-1] #Clean up the list style brackets
 
-	return flatboard_clean
+	return flatboard#_clean
 
 
 
