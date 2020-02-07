@@ -52,7 +52,7 @@ width=height #board must be square
 board=np.zeros((width,height)) #board will be populated later
 goal=np.array([[1,2,3],[4,5,6],[7,8,0]])
 
-initialboard=np.array([[1,0,3],[4,5,6],[7,8,2]])
+initialboard=np.array([[1,2,3],[4,5,6],[7,0,8]])
 
 
 print(board)
@@ -61,7 +61,7 @@ print(goal)
 
 
 printboard(initialboard)
-newBoard=actions.ActionMoveLeft(initialboard)
+newBoard=actions.MoveDown(initialboard)
 
 printboard(newBoard)
 
