@@ -4,9 +4,9 @@
 
 #import required packages
 import numpy as np
-import matplotlib
-import actions
 from printboard import printboard
+import actions
+
 
 verbose=True #set this to True for more print statements (may be slower)
 
