@@ -87,6 +87,8 @@ def MoveUp(CurrentNode):
 
 
 
+
+
 def MoveDown(CurrentNode):
 	#Moves blank tile down, if possible
 	board=CurrentNode
@@ -95,7 +97,7 @@ def MoveDown(CurrentNode):
 	num_cols=len(board)
 
 	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
-	
+
 	print(num_rows)
 	if(blank_row==num_rows-1): #Blank spot is on the bottom edge; cannot be moved down
 		if verbose==True:
