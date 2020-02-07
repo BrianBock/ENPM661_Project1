@@ -32,7 +32,7 @@ total_permutations=int(math.factorial(height*width))
 printboard(initialboard) #nodePath should start with the initial configuration
 
 #create a 2D array where the first dimension is a position and the second is a string flatboard like "1 4 7 2 5 8 3 6 0"
-board_tracker=np.empty([total_permutations],dtype='object')
+board_tracker=np.empty([total_permutations],dtype='object') #must be type object so we can use python style strings
 
 
 #for i in range(0,total_permutations,4):
