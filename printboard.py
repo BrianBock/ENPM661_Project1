@@ -19,13 +19,13 @@ def flatboard(board):
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
 	i=0
-	flatboard=np.empty([num_cols*num_rows],int)#Create an empty array which will be the single line print out
+	flatboard=""#np.empty([num_cols*num_rows],int)#Create an empty array which will be the single line print out
 	for col in range (0,num_cols):
 		for row in range(0,num_rows):
-			flatboard[i]=int(board[row,col])
+			flatboard=flatboard+" "+str(board[row,col])
 			i+=1
 
-	flatboard_clean=str(flatboard)[1:-1] #Clean up the list style brackets
+	flatboard_clean=flatboard[1:-1] #Clean up the list style brackets
 
 	return flatboard_clean
 
