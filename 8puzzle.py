@@ -6,6 +6,7 @@
 import numpy as np
 from printboard import printboard
 from printboard import flatboard
+from printboard import flatboard_spaceless
 import actions
 import math
 
@@ -31,28 +32,30 @@ total_permutations=int(math.factorial(height*width))
 printboard(initialboard) #nodePath should start with the initial configuration
 
 #create a 2D array where the first dimension is a position and the second is a string flatboard like "1 4 7 2 5 8 3 6 0"
-board_tracker=np.empty([total_permutations])
+board_tracker=np.empty([total_permutations],dtype='object')
 
 
 #for i in range(0,total_permutations,4):
 myboard=np.empty(4)
-global k
-k=0
+
 
 def findAllPerms(board):
+	global k
+	k=0
 	#4 ways to move
 	myboard1=actions.MoveLeft(board)
-	myboard2=actions.MoveRight(board)
-	myboard3=actions.MoveUp(board)
-	myboard4=actions.MoveDown(board)
-	for i in range(0,3):
-		if(np.where(board_tracker==flatboard(myboard1))): # board configuration is already saved. Move on
-			return
-		elif(np.where(board_tracker==flatboard(goal))): #goal found
-			print("Goal found!")
-		else:
-			board_tracker[k]=flatboard(myboard1)
-			k+=1
+	print("Flatboard is: "+flatboard_spaceless(myboard1))
+	# myboard2=actions.MoveRight(board)
+	# myboard3=actions.MoveUp(board)
+	# myboard4=actions.MoveDown(board)
+	if(flatboard_spaceless(myboard1) in board_tracker): # board configuration is already saved. Move on
+		return
+	elif(myboard1 is flatboard_spaceless(goal)): #goal found
+		print("Goal found!")
+	else:
+		print("Adding board to list")
+		board_tracker[k]=flatboard_spaceless(myboard1) # board configuration is not saved yet. Save it
+		k=k+1
 
 
 
@@ -61,9 +64,9 @@ findAllPerms(initialboard)
 
 print(board_tracker)
 
-#newBoard=actions.MoveDown(initialboard)
+# newBoard=actions.MoveDown(initialboard)
 
-#printboard(newBoard)
+# printboard(newBoard)
 
 
 
