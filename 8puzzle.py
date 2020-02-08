@@ -5,12 +5,16 @@
 #import required packages
 import numpy as np
 import math
+from datetime import datetime
+
 #import my packages
 from printboard import printboard
 from printboard import flatboard
 from printboard import flatboard_spaceless
 import actions
 from verbose import verbose
+
+start = datetime.now()
 
 
 # Set up board and goal
@@ -49,10 +53,11 @@ def findAllPerms(board,k):
 	for i in range(0,4):
 		verbose("Flatboard is: "+flatboard_spaceless(myboard[i]))
 		if(flatboard_spaceless(myboard[i]) in board_tracker): # board configuration is already saved. Move on
-				verbose("Board configuration is already saved.")
+			verbose("Board configuration is already saved.")
 			#return
-		elif(myboard[i] == flatboard_spaceless(goal)): #goal found
+		elif(flatboard_spaceless(myboard[i]) == flatboard_spaceless(goal)): #goal found
 			print("Goal found!")
+			return
 		else:
 			verbose("Adding board to list")
 			board_tracker[k]=flatboard_spaceless(myboard[i]) # board configuration is not saved yet. Save it
@@ -70,8 +75,10 @@ print("There are "+str(np.count_nonzero(board_tracker))+" board configurations s
 
 # printboard(newBoard)
 
-
-
+end = datetime.now()
+runtime=end-start
+#runtime=runtime.strftime("%H:%M:%S")
+print("Finished in "+str(runtime)+"(hours:min:sec)")
 
 
 
