@@ -10,6 +10,7 @@ def MoveLeft(CurrentNode):
 	num_cols=len(board)
 
 	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
+	print(blank_row,blank_col)
 	
 	if(blank_col==0): #Blank spot is on the left edge; cannot be moved left
 		if verbose==True:
@@ -19,7 +20,7 @@ def MoveLeft(CurrentNode):
 	else:
 		if verbose==True:
 			print("Moving 1 square to the left")
-		newBoard=board
+		newBoard=np.copy(board)
 		newBoard[blank_row,blank_col]=board[blank_row,blank_col-1]
 		newBoard[blank_row,blank_col-1]=0#board[blank_row,blank_col]
 		return newBoard
@@ -46,7 +47,7 @@ def MoveRight(CurrentNode):
 	else:
 		if verbose==True:
 			print("Moving 1 square to the right")
-		newBoard=board
+		newBoard=np.copy(board)
 		newBoard[blank_row,blank_col]=board[blank_row,blank_col+1]
 		newBoard[blank_row,blank_col+1]=0#board[blank_row,blank_col]
 		return newBoard
@@ -77,7 +78,7 @@ def MoveUp(CurrentNode):
 	else:
 		if verbose==True:
 			print("Moving 1 square up")
-		newBoard=board
+		newBoard=np.copy(board)
 		newBoard[blank_row,blank_col]=board[blank_row-1,blank_col]
 		newBoard[blank_row-1,blank_col]=0
 		return newBoard
@@ -98,7 +99,7 @@ def MoveDown(CurrentNode):
 
 	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
 
-	print(num_rows)
+	#print(num_rows)
 	if(blank_row==num_rows-1): #Blank spot is on the bottom edge; cannot be moved down
 		if verbose==True:
 			print("Blank space is at the bottom edge of the board and cannot be moved down.")
@@ -107,7 +108,7 @@ def MoveDown(CurrentNode):
 	else:
 		if verbose==True:
 			print("Moving 1 square down")
-		newBoard=board
+		newBoard=np.copy(board)
 		newBoard[blank_row,blank_col]=board[blank_row+1,blank_col]
 		newBoard[blank_row+1,blank_col]=0
 		return newBoard
