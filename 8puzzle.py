@@ -75,10 +75,21 @@ print("There are "+str(np.count_nonzero(board_tracker))+" board configurations s
 
 # printboard(newBoard)
 
+
+
+
+
+
+
+
+
+
+
+
 end = datetime.now()
 runtime=end-start
 #runtime=runtime.strftime("%H:%M:%S")
-print("Finished in "+str(runtime)+"(hours:min:sec)")
+print("Finished in "+str(runtime)+" (hours:min:sec)")
 
 
 
