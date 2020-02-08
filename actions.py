@@ -10,7 +10,6 @@ def MoveLeft(board):
 	num_cols=len(board)
 
 	[blank_row,blank_col]=np.where(board==0) #Find the location of the blank space
-	print(blank_row,blank_col)
 	
 	if(blank_col==0): #Blank spot is on the left edge; cannot be moved left
 		if verbose==True:
