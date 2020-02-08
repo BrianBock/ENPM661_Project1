@@ -4,11 +4,12 @@
 
 #import required packages
 import numpy as np
+import math
+#import my packages
 from printboard import printboard
 from printboard import flatboard
 from printboard import flatboard_spaceless
 import actions
-import math
 from verbose import verbose
 
 
@@ -36,6 +37,7 @@ board_tracker=np.empty([total_permutations],dtype='object') #must be type object
 #for i in range(0,total_permutations,4):
 myboard=np.empty(4,dtype='object')
 
+global k
 k=0
 
 def findAllPerms(board,k):
@@ -49,10 +51,10 @@ def findAllPerms(board,k):
 		if(flatboard_spaceless(myboard[i]) in board_tracker): # board configuration is already saved. Move on
 				verbose("Board configuration is already saved.")
 			#return
-		elif(myboard[i] is flatboard_spaceless(goal)): #goal found
+		elif(myboard[i] == flatboard_spaceless(goal)): #goal found
 			print("Goal found!")
 		else:
-			print("Adding board to list")
+			verbose("Adding board to list")
 			board_tracker[k]=flatboard_spaceless(myboard[i]) # board configuration is not saved yet. Save it
 			k=k+1
 			findAllPerms(myboard[i],k)
@@ -62,6 +64,7 @@ def findAllPerms(board,k):
 findAllPerms(initialboard,k)
 
 print(board_tracker)
+print("There are "+str(np.count_nonzero(board_tracker))+" board configurations saved.")
 
 # newBoard=actions.MoveDown(initialboard)
 
