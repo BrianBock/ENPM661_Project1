@@ -2,9 +2,9 @@ import numpy as np
 
 verbose=True #change to True for more print statements (may be slower)
 
-def MoveLeft(CurrentNode):
+def MoveLeft(board):
 	#Moves blank tile left, if possible
-	board=CurrentNode
+	#board=CurrentNode
 
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
@@ -30,9 +30,9 @@ def MoveLeft(CurrentNode):
 
 
 
-def MoveRight(CurrentNode):
+def MoveRight(board):
 	#Moves blank tile right, if possible
-	board=CurrentNode
+	#board=CurrentNode
 
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
@@ -60,9 +60,9 @@ def MoveRight(CurrentNode):
 
 
 
-def MoveUp(CurrentNode):
+def MoveUp(board):
 	#Moves blank tile up, if possible
-	board=CurrentNode
+	#board=CurrentNode
 
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
@@ -90,9 +90,9 @@ def MoveUp(CurrentNode):
 
 
 
-def MoveDown(CurrentNode):
+def MoveDown(board):
 	#Moves blank tile down, if possible
-	board=CurrentNode
+	#board=CurrentNode
 
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
