@@ -9,9 +9,7 @@ from printboard import flatboard
 from printboard import flatboard_spaceless
 import actions
 import math
-
-
-verbose=True #set this to True for more print statements (may be slower)
+from verbose import verbose
 
 
 # Set up board and goal
@@ -47,11 +45,9 @@ def findAllPerms(board,k):
 	myboard[2]=actions.MoveUp(board)
 	myboard[3]=actions.MoveDown(board)
 	for i in range(0,4):
-		print("Flatboard is: "+flatboard_spaceless(myboard[i]))
+		verbose("Flatboard is: "+flatboard_spaceless(myboard[i]))
 		if(flatboard_spaceless(myboard[i]) in board_tracker): # board configuration is already saved. Move on
-			if verbose==True:
-				m=1
-				#print("Board configuration is already saved.")
+				verbose("Board configuration is already saved.")
 			#return
 		elif(myboard[i] is flatboard_spaceless(goal)): #goal found
 			print("Goal found!")
