@@ -14,6 +14,7 @@ from printboard import flatboard_spaceless
 import actions
 from verbose import verbose
 
+#Record the start time to calculate the run time at the end
 start = datetime.now()
 
 
@@ -38,7 +39,6 @@ printboard(initialboard) #nodePath should start with the initial configuration
 board_tracker=np.empty([total_permutations],dtype='object') #must be type object so we can use python style strings
 
 
-#for i in range(0,total_permutations,4):
 myboard=np.empty(4,dtype='object')
 
 global k
@@ -57,6 +57,9 @@ def findAllPerms(board,k):
 			#return
 		elif(flatboard_spaceless(myboard[i]) == flatboard_spaceless(goal)): #goal found
 			print("Goal found!")
+			print(flatboard_spaceless(myboard[i]))
+			board_tracker[k]=flatboard_spaceless(myboard[i])
+			k=k+1
 			return
 		else:
 			verbose("Adding board to list")
@@ -70,6 +73,9 @@ findAllPerms(initialboard,k)
 
 print(board_tracker)
 print("There are "+str(np.count_nonzero(board_tracker))+" board configurations saved.")
+
+goal_pos=np.where(board_tracker==flatboard_spaceless(goal))
+print("The goal configuration is the "+str(goal_pos[0])+"th entry. ")
 
 # newBoard=actions.MoveDown(initialboard)
 
