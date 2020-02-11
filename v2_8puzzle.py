@@ -10,9 +10,11 @@ from datetime import datetime
 #import my packages
 from printboard import printboard
 from printboard import flatboard
-from printboard import flatboard_spaceless
-import actions
+#from printboard import flatboard_spaceless
+import spaceless_actions as actions
 from verbose import verbose
+from board_switcher import flat2square
+from board_switcher import square2flat
 
 #Record the start time to calculate the run time at the end
 start = datetime.now()
@@ -62,18 +64,20 @@ board_tracker=np.empty([total_permutations],dtype='object') #must be type object
 # attempt2=[attempt1, boardi]
 # attempt3=[attempt2, boardj]
 
-i=0
 attempt=[[]*10]*10
+attempt[0].append("000")
 
 for i in range(1,len(attempt)):
-	attempt[i-1].append(str(i)+str(i)+str(i))
 	attempt[i]=attempt[i-1].copy()
+	attempt[i].append(str(i)+str(i)+str(i))
 
+#actions.MoveLeft(
+a=flat2square("123456780")
+b=actions.MoveLeft(a)
 
-
-print(attempt[9])
-
-
+#print(attempt)
+print(a)
+print(b)
 
 
 
