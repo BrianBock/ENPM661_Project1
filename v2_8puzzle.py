@@ -65,8 +65,7 @@ board_tracker=np.empty([total_permutations],dtype='object') #must be type object
 i=0
 attempt=[[]*10]*10
 
-
-for i in range(1,10):
+for i in range(1,len(attempt)):
 	attempt[i-1].append(str(i)+str(i)+str(i))
 	attempt[i]=attempt[i-1].copy()
 
