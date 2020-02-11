@@ -13,8 +13,6 @@ def flat2square(spacelessflatboard):
 	num_rows=num_cols #must be square
 
 	stringBoard=list(spacelessflatboard)
-	# for q in range(0, len(stringBoard)): 
-	# 	stringBoard[q] = int(stringBoard[q]) 
 	print(stringBoard)
 
 	i=0
@@ -25,5 +23,31 @@ def flat2square(spacelessflatboard):
 			i+=1
 
 	print(squareBoard)
+
+
+
+def square2flat(squareBoard):
+	"""This function takes an 8 puzzle board and converts it to a linear string
+	"""
+	# Orignal board:
+	# 1 2 3
+	# 4 5 6
+	# 7 8 0
+	# becomes: 
+	# "147258360"
+
+	num_rows=len(squareBoard) #one side of the puzzle
+	num_cols=len(squareBoard)
+	i=0
+	flatboard=""#Create an empty array which will be the single line print out
+	for col in range (0,num_cols):
+		for row in range(0,num_rows):
+			flatboard=flatboard+str(board[row,col])
+			i+=1
+
+	return flatboard
+
+
+
 
 flat2square("147258360")
