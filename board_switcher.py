@@ -13,7 +13,8 @@ def flat2square(spacelessflatboard):
 	num_rows=num_cols #must be square
 
 	stringBoard=list(spacelessflatboard)
-	print(stringBoard)
+	#print("String board:")
+	#print(stringBoard)
 
 	i=0
 	squareBoard=np.empty([num_cols,num_rows])
@@ -21,8 +22,10 @@ def flat2square(spacelessflatboard):
 		for row in range(0,num_rows):
 			squareBoard[row,col]=int(stringBoard[i])
 			i+=1
-
-	print(squareBoard)
+	#print("Square board is:")
+	#print(squareBoard)
+	return squareBoard
+	
 
 
 
@@ -50,4 +53,4 @@ def square2flat(squareBoard):
 
 
 
-flat2square("147258360")
+#flat2square("147258360")
