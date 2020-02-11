@@ -42,7 +42,7 @@ def flatboard_spaceless(board):
 	# 4 5 6
 	# 7 8 0
 	# becomes: 
-	# "1 4 7 2 5 8 3 6 0"
+	# "147258360"
 
 	num_rows=len(board) #one side of the puzzle
 	num_cols=len(board)
