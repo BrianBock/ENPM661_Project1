@@ -39,12 +39,38 @@ printboard(initialboard) #nodePath should start with the initial configuration
 board_tracker=np.empty([total_permutations],dtype='object') #must be type object so we can use python style strings
 
 
+branches=np.empty([total_permutations, total_permutations],dtype='object')
+#want an array of lists. Each list contains all of the entries/moves for each branch. 
+#the first branch that makes it to the goal is the winner. That branch becomes the victory path
+#path is the same in all until fork
+#			1) 147208365
+#2) Left 		3) Right 		4) Up 			5) Down
+# 107248365		147268305		147028365		147280365
+# etc
+# say left most branch wins
+# Victory path=
+# 147208365
+# 107248365
+# ...
+# goal
+
+# at each decision, copy previous path and append new board
+# board_tracker[i]=board_tracker[i-1].copy() where board_tracker is an array of lists. 
+# board_tracker[i].append(board)
+
+# attempt1=[board1, board2, board3, board4....]
+# attempt2=[attempt1, boardi]
+# attempt3=[attempt2, boardj]
+
+attempt=[]
+
 myboard=np.empty(4,dtype='object')
 
 global k
 k=0
+attempt=0
 
-def findAllPerms(board,k):
+def findAllPerms(board,k,attempt):
 	#4 ways to move
 	myboard[0]=actions.MoveLeft(board)
 	myboard[1]=actions.MoveRight(board)
