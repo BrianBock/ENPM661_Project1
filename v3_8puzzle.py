@@ -71,8 +71,6 @@ queue.append(board)
 i=0
 myboard=np.empty(4,dtype='object')
 
-
-
 while queue:
 	# Add new moves to the queue. The Moves return empty if the move is invalid
 	board=queue.popleft()
@@ -80,22 +78,27 @@ while queue:
 	myboard[1]=actions.MoveRight(board)
 	myboard[2]=actions.MoveUp(board)
 	myboard[3]=actions.MoveDown(board)
+
 	for b in range(0,4):
 		# Don't want empty entries and don't want any repeat entries
-		if (myboard[b] is not None) and (myboard[b] not in board_tracker): 
+		if (myboard[b] is not None) and (myboard[b] not in board_tracker):
+			#print("b is: "+str(b))
 			print("Board is: "+str(myboard[b]))
 			queue.append(myboard[b])
 			board_tracker.add(board) #add it to the board_tracker
 			nodes_list.append([board,parent_node])
 
-
 			#Is it the goal?
-			if(board == square2flat(goal)):
+			if(myboard[b] == square2flat(goal)):
 				print("Goal found!")
+
+				#Clear everything else so the program stops here
 				queue.clear()
+				done=True
 				break
 
 		parent_node+=1
+		
 	
 	#print(board)
 
