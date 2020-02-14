@@ -82,7 +82,7 @@ while queue:
 	myboard[3]=actions.MoveDown(board)
 	for b in range(0,4):
 		# Don't want empty entries and don't want any repeat entries
-		if myboard[b] is not None and myboard[b] not in board_tracker: 
+		if (myboard[b] is not None) and (myboard[b] not in board_tracker): 
 			print("Board is: "+str(myboard[b]))
 			queue.append(myboard[b])
 			board_tracker.add(board) #add it to the board_tracker
@@ -90,8 +90,10 @@ while queue:
 
 
 			#Is it the goal?
-			if(board is square2flat(goal)):
+			if(board == square2flat(goal)):
 				print("Goal found!")
+				queue.clear()
+				break
 
 		parent_node+=1
 	
