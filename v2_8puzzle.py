@@ -6,12 +6,13 @@
 import numpy as np
 import math
 from datetime import datetime
+import collections
 
 #import my packages
 from printboard import printboard
 from printboard import flatboard
 #from printboard import flatboard_spaceless
-import spaceless_actions as actions
+import actions
 from verbose import verbose
 from board_switcher import flat2square
 from board_switcher import square2flat
@@ -64,20 +65,55 @@ board_tracker=np.empty([total_permutations],dtype='object') #must be type object
 # attempt2=[attempt1, boardi]
 # attempt3=[attempt2, boardj]
 
+
+myboard=np.empty(4,dtype='object')
+
 attempt=[[]*10]*10
 attempt[0].append("000")
+k=0
 
-for i in range(1,len(attempt)):
-	attempt[i]=attempt[i-1].copy()
-	attempt[i].append(str(i)+str(i)+str(i))
+# for i in range(1,len(attempt)):
+# 	attempt[i]=attempt[i-1].copy()
+# 	attempt[i].append(str(i)+str(i)+str(i))
 
-#actions.MoveLeft(
+def BFS(board,attempt,attempt_num,parent,k):
+	myboard[0]=actions.MoveLeft(board)
+	myboard[1]=actions.MoveRight(board)
+	myboard[2]=actions.MoveUp(board)
+	myboard[3]=actions.MoveDown(board)
+
+	for i in range(0,4):
+		print(myboard[i])
+
+	for i in range(0,4):
+		if(square2flat(myboard[i]) in board_tracker): # board configuration is already saved. Move on
+			verbose("Board configuration is already saved.")
+			return
+		else:
+			verbose("Adding board to list")
+			board_tracker[k]=square2flat(myboard[i])
+			k=k+1
+		#print(attempt_num)
+
+			attempt[attempt_num]=attempt[parent].copy()
+			attempt[attempt_num].append(square2flat(myboard[i]))
+			parent=attempt_num
+			attempt_num+=1
+			# print(attempt[parent])
+			BFS(myboard[i],attempt,attempt_num+i,parent,k)
+
+
+
+BFS(initialboard,attempt,0,0,k)
+print(attempt)
+
 a=flat2square("123456780")
 b=actions.MoveLeft(a)
 
+
 #print(attempt)
-print(a)
-print(b)
+#print(a)
+#print(b)
 
 
 
