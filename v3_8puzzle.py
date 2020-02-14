@@ -27,17 +27,17 @@ start = datetime.now()
 height=3
 width=height #board must be square
 #board=np.zeros((width,height)) #board will be populated later
-goal=np.array([[1,2,3],[4,5,6],[7,8,0]])
+goal=np.array([[1,2,3],[8,0,4],[7,6,5]])
 
 
-initialboard=np.array([[1,2,3],[4,5,6],[7,0,8]])
+initialboard=np.array([[2,8,1],[0,4,3],[7,6,5]])
 
 print("Start is: "+str(square2flat(initialboard)))
 print("Goal is:  "+str(square2flat(goal)))
 
 #total_permutations=int(math.factorial(height*width))
 
-
+print("Starting now. Please be patient.")
 printboard(initialboard) #nodePath should start with the initial configuration
 
 
@@ -69,7 +69,7 @@ while queue:
 		# Don't want empty entries and don't want any repeat entries
 		if (myboard[b] is not None) and (myboard[b] not in board_tracker):
 			#print("b is: "+str(b))
-			print("Board is: "+str(myboard[b]))
+			#print("Board is: "+str(myboard[b]))
 			queue.append(myboard[b])
 			board_tracker.add(board) #add it to the board_tracker
 			nodes_list.append([board,parent_node])
