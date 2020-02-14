@@ -56,6 +56,7 @@ queue=collections.deque([])
 queue.append(board)
 i=0
 myboard=np.empty(4,dtype='object')
+found_goal=False
 
 while queue:
 	# Add new moves to the queue. The Moves return empty if the move is invalid
@@ -80,12 +81,13 @@ while queue:
 
 				#Clear everything else so the program stops here
 				queue.clear()
-				done=True
+				found_goal=True
 				break
 
 		parent_node+=1
 
-
+if found_goal==False:
+	print("No solution found :(")
 
 
 
