@@ -48,7 +48,7 @@ def square2flat(squareBoard):
 		for row in range(0,num_rows):
 			flatboard=flatboard+str(squareBoard[row,col])
 			i+=1
-	print("Flatboard is: "+str(flatboard))
+	#print("Flatboard is: "+str(flatboard))
 	return flatboard
 
 
