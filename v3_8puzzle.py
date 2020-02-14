@@ -28,10 +28,13 @@ height=3
 width=height #board must be square
 #board=np.zeros((width,height)) #board will be populated later
 goal=np.array([[1,2,3],[4,5,6],[7,8,0]])
-print("Goal is: "+str(square2flat(goal)))
+
 
 initialboard=np.array([[1,2,3],[4,5,6],[7,0,8]])
-print("Initial Board is: "+str(square2flat(initialboard)))
+
+print("Start is: "+str(square2flat(initialboard)))
+print("Goal is:  "+str(square2flat(goal)))
+
 total_permutations=int(math.factorial(height*width))
 # print(total_permutations)
 
@@ -72,33 +75,40 @@ myboard=np.empty(4,dtype='object')
 
 while queue:
 	# Add new moves to the queue. The Moves return empty if the move is invalid
+	board=queue.popleft()
 	myboard[0]=actions.MoveLeft(board)
 	myboard[1]=actions.MoveRight(board)
 	myboard[2]=actions.MoveUp(board)
 	myboard[3]=actions.MoveDown(board)
 	for b in range(0,4):
-		if myboard[b] is not None: # Don't want empty entries
-			#print("Board is: "+str(myboard[b]))
+		# Don't want empty entries and don't want any repeat entries
+		if myboard[b] is not None and myboard[b] not in board_tracker: 
+			print("Board is: "+str(myboard[b]))
 			queue.append(myboard[b])
+			board_tracker.add(board) #add it to the board_tracker
+			nodes_list.append([board,parent_node])
 
-	board=queue.pop()
-	
-	#Has it been tried already?
-	if(board not in board_tracker):
-		print("New board")
-		board_tracker.add(board) #add it to the board_tracker
-		nodes_list.append([board,parent_node])
 
-		#Is it the goal?
-		if(board is square2flat(goal)):
-			print("Goal found!")
+			#Is it the goal?
+			if(board is square2flat(goal)):
+				print("Goal found!")
 
-		
-		print(queue)
 		parent_node+=1
+	
+	#print(board)
+
+	#Has it been tried already?
+	#if(board not in board_tracker):
+	#print("New board")
+	
+
+	
+	#print(board)
+	
 
 	#else:
-	#	queue.pop()
+		#board=queue.pop()
+		#print("something new!")
 
 
 
