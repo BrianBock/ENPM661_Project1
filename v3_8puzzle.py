@@ -35,24 +35,10 @@ initialboard=np.array([[1,2,3],[4,5,6],[7,0,8]])
 print("Start is: "+str(square2flat(initialboard)))
 print("Goal is:  "+str(square2flat(goal)))
 
-total_permutations=int(math.factorial(height*width))
-# print(total_permutations)
-
-# print(board)
-# print(goal)
-
+#total_permutations=int(math.factorial(height*width))
 
 
 printboard(initialboard) #nodePath should start with the initial configuration
-
-# [board,parent]
-
-# Initial board. 
-# while board is not goal:
-	# Attempt to move left, up, down, right. 
-	# Check if each move is valid (fits on board and hasn't been tried already). Discard if not.
-	# Check if new board is goal
-	# Add valid new board and parent index to a list
 
 
 #queue - boards we want to try. Will exhaust itself when we run out of possible moves
@@ -98,22 +84,6 @@ while queue:
 				break
 
 		parent_node+=1
-		
-	
-	#print(board)
-
-	#Has it been tried already?
-	#if(board not in board_tracker):
-	#print("New board")
-	
-
-	
-	#print(board)
-	
-
-	#else:
-		#board=queue.pop()
-		#print("something new!")
 
 
 
