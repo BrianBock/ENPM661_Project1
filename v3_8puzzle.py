@@ -37,7 +37,9 @@ print("Goal is:  "+str(square2flat(goal)))
 
 #total_permutations=int(math.factorial(height*width))
 
-print("Starting now. Please be patient.")
+print("Starting now.")
+print("If the puzzle is very difficult or unsolvable, this may take a minute or two.")
+print("Please be patient.")
 printboard(initialboard) #nodePath should start with the initial configuration
 
 
