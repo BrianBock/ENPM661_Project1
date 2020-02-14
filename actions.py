@@ -5,6 +5,7 @@ from board_switcher import square2flat
 
 def MoveLeft(board):
 	#Moves blank tile left, if possible
+	#Convert to a square array
 	board=flat2square(board)
 
 	num_rows=len(board) #one side of the puzzle
@@ -31,6 +32,7 @@ def MoveLeft(board):
 
 def MoveRight(board):
 	#Moves blank tile right, if possible
+	#Convert to a square array
 	board=flat2square(board)
 
 	num_rows=len(board) #one side of the puzzle
@@ -61,6 +63,7 @@ def MoveRight(board):
 
 def MoveUp(board):
 	#Moves blank tile up, if possible
+	#Convert to a square array
 	board=flat2square(board)
 
 	num_rows=len(board) #one side of the puzzle
@@ -90,6 +93,7 @@ def MoveUp(board):
 
 def MoveDown(board):
 	#Moves blank tile down, if possible
+	#Convert to a square array
 	board=flat2square(board)
 
 	num_rows=len(board) #one side of the puzzle
