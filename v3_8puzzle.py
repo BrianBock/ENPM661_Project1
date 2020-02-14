@@ -28,8 +28,10 @@ height=3
 width=height #board must be square
 #board=np.zeros((width,height)) #board will be populated later
 goal=np.array([[1,2,3],[4,5,6],[7,8,0]])
+print("Goal is: "+str(square2flat(goal)))
 
 initialboard=np.array([[1,2,3],[4,5,6],[7,0,8]])
+print("Initial Board is: "+str(square2flat(initialboard)))
 total_permutations=int(math.factorial(height*width))
 # print(total_permutations)
 
@@ -39,8 +41,6 @@ total_permutations=int(math.factorial(height*width))
 
 
 printboard(initialboard) #nodePath should start with the initial configuration
-
-#create a 2D array where the first dimension is a position and the second is a string flatboard like "147258360"
 
 # [board,parent]
 
@@ -57,40 +57,48 @@ printboard(initialboard) #nodePath should start with the initial configuration
 #parent_node = index of the parent board config as stored in nodes_list (index of node_list)
 #board_tracker - a set (for speed) of all of the tried boards
 
-board_tracker={}
+board_tracker=set()
 parent_node=0
 #nodes_list=[147258360],[3]
+nodes_list=[]
 board=square2flat(initialboard.copy())
 
-queue=set()
-queue.add(board)
+queue=collections.deque([])
+queue.append(board)
+i=0
+myboard=np.empty(4,dtype='object')
+
 
 
 while queue:
 	# Add new moves to the queue. The Moves return empty if the move is invalid
-	queue.add(actions.MoveLeft(board))
-	queue.add(actions.MoveRight(board))
-	queue.add(actions.MoveUp(board))
-	queue.add(actions.MoveDown(board))
+	myboard[0]=actions.MoveLeft(board)
+	myboard[1]=actions.MoveRight(board)
+	myboard[2]=actions.MoveUp(board)
+	myboard[3]=actions.MoveDown(board)
+	for b in range(0,4):
+		if myboard[b] is not None: # Don't want empty entries
+			#print("Board is: "+str(myboard[b]))
+			queue.append(myboard[b])
 
-	for newboard in queue:
-		#Has it been tried already?
-		if(square2flat(newboard) not in board_tracker):
-			print("New board")
-			board_tracker.add(square2flat(newboard)) #add it to the board_tracker
-			node_list.append(board,parent_node)
+	board=queue.pop()
+	
+	#Has it been tried already?
+	if(board not in board_tracker):
+		print("New board")
+		board_tracker.add(board) #add it to the board_tracker
+		nodes_list.append([board,parent_node])
 
-			#Is it the goal?
-			if(square2flat(newboard) is square2flat(goal)):
-				print("Goal found!")
+		#Is it the goal?
+		if(board is square2flat(goal)):
+			print("Goal found!")
 
 		
-
-		# Remove completed moves from the queue
-		queue.remove(newboard)
+		print(queue)
 		parent_node+=1
 
-
+	#else:
+	#	queue.pop()
 
 
 
