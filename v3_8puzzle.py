@@ -11,7 +11,6 @@ import collections
 #import my packages
 from printboard import printboard
 from printboard import flatboard
-#from printboard import flatboard_spaceless
 import actions
 from verbose import verbose
 from board_switcher import flat2square
@@ -27,7 +26,6 @@ start = datetime.now()
 # Set up board and goal
 height=3
 width=height #board must be square
-#board=np.zeros((width,height)) #board will be populated later
 goal=np.array([[1,2,3],[8,0,4],[7,6,5]])
 
 
@@ -36,11 +34,8 @@ initialboard=np.array([[2,8,1],[0,4,3],[7,6,5]])
 print("Start is: "+str(square2flat(initialboard)))
 print("Goal is:  "+str(square2flat(goal)))
 
-#total_permutations=int(math.factorial(height*width))
-
 print("Starting now.")
-print("If the puzzle is very difficult or unsolvable, this may take a minute or two.")
-print("Please be patient.")
+print("If the puzzle is very difficult or unsolvable, this may take a minute or two. Please be patient.")
 printboard(square2flat(initialboard)) #nodePath should start with the initial configuration
 
 
@@ -72,8 +67,6 @@ while queue:
 	for b in range(0,4):
 		# Don't want empty entries and don't want any repeat entries
 		if (myboard[b] is not None) and (myboard[b] not in board_tracker):
-			#print("b is: "+str(b))
-			#print("Board is: "+str(myboard[b]))
 			queue.append(myboard[b])
 			board_tracker.add(board) #add it to the board_tracker
 			nodes_list.append([board,parent_node])
@@ -97,8 +90,7 @@ else:
 	print("Printing solution to file now...")
 
 	parent_index=nodes_list[goal_node-1][1]
-	# print(parent_index)
-	# print(nodes_list[parent_index])
+
 
 	victorypath=[]
 	while (parent_index>0):
@@ -109,6 +101,7 @@ else:
 	# Reverse the path so its from start to goal
 	victorypath.reverse()
 	
+	# Print out all of the moves
 	print("Done in "+str(len(victorypath))+" moves! Here's how I got to the goal:")
 	print("Start Node:")
 	for count, move in enumerate(victorypath):
@@ -122,10 +115,9 @@ else:
 
 
 
-
+# Calculate the run time
 end = datetime.now()
 runtime=end-start
-#runtime=runtime.strftime("%H:%M:%S")
 print("Finished in "+str(runtime)+" (hours:min:sec)")
 
 
