@@ -16,6 +16,7 @@ import actions
 from verbose import verbose
 from board_switcher import flat2square
 from board_switcher import square2flat
+from plot_path import print_matrix
 
 print("All packages imported properly")
 
@@ -40,7 +41,7 @@ print("Goal is:  "+str(square2flat(goal)))
 print("Starting now.")
 print("If the puzzle is very difficult or unsolvable, this may take a minute or two.")
 print("Please be patient.")
-printboard(initialboard) #nodePath should start with the initial configuration
+printboard(square2flat(initialboard)) #nodePath should start with the initial configuration
 
 
 #queue - boards we want to try. Will exhaust itself when we run out of possible moves
@@ -81,7 +82,7 @@ while queue:
 			if(myboard[b] == square2flat(goal)):
 				print("Goal found!")
 				goal_node=len(nodes_list)#-1 #-1 to compensate for 0 index
-				print(goal_node)
+				
 				#Clear everything else so the program stops here
 				queue.clear()
 				found_goal=True
@@ -99,19 +100,28 @@ else:
 	# print(parent_index)
 	# print(nodes_list[parent_index])
 
-while (parent_index>0):
-	k=nodes_list[parent_index][1]
 	victorypath=[]
-	victorypath.append(nodes_list[k][0])
-	parent_index=nodes_list[k][1]
-	print(parent_index)
+	while (parent_index>0):
+		k=nodes_list[parent_index][1]
+		victorypath.append(nodes_list[k][0])
+		parent_index=nodes_list[k][1]
 
 	# Reverse the path so its from start to goal
 	victorypath.reverse()
 	
-	for move in victorypath:
-		print(move)
+	print("Done in "+str(len(victorypath))+" moves! Here's how I got to the goal:")
+	print("Start Node:")
+	for count, move in enumerate(victorypath):
+		#print(move)
 		printboard(move)
+		if count >0:
+			print("Step #"+str(count))
+		print_matrix(move)
+		print("\n\n")
+
+
+
+
 
 end = datetime.now()
 runtime=end-start
