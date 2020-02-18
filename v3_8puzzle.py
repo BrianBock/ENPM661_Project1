@@ -47,18 +47,21 @@ printboard(square2flat(initialboard)) #nodePath should start with the initial co
 board_tracker=set()
 parent_node=0
 #nodes_list=[147258360],[3]
-nodes_list=[]
+nodes_list=[]#
 board=square2flat(initialboard.copy())
 
-queue=collections.deque([])
-queue.append(board)
+nodes_list.append([board,-1])
+
+queue=collections.deque()
+queue.append(0)
 i=0
 myboard=np.empty(4,dtype='object')
 found_goal=False
 
 while queue:
 	# Add new moves to the queue. The Moves return empty if the move is invalid
-	board=queue.popleft()
+	parent_node=queue.popleft()
+	board=nodes_list[parent_node][0]
 	myboard[0]=actions.MoveLeft(board)
 	myboard[1]=actions.MoveRight(board)
 	myboard[2]=actions.MoveUp(board)
@@ -67,10 +70,12 @@ while queue:
 	for b in range(0,4):
 		# Don't want empty entries and don't want any repeat entries
 		if (myboard[b] is not None) and (myboard[b] not in board_tracker):
-			queue.append(myboard[b])
-			board_tracker.add(board) #add it to the board_tracker
-			nodes_list.append([board,parent_node])
+			board_tracker.add(myboard[b]) #add it to the board_tracker
+			nodes_list.append([myboard[b],parent_node])
+			queue.append(len(nodes_list)-1)
 
+			#print(nodes_list)
+			#print(len(nodes_list))
 			#Is it the goal?
 			if(myboard[b] == square2flat(goal)):
 				print("Goal found!")
@@ -80,23 +85,39 @@ while queue:
 				queue.clear()
 				found_goal=True
 				break
-
-	parent_node+=1
+		if(found_goal):
+			break
+	#print(nodes_list[1])
+	#parent_node+=1
 
 if found_goal==False:
 	print("No solution found :(")
 
 else:
 	print("Printing solution to file now...")
+	
+	for i in range (0,len(nodes_list)):
+		print(str(i)+"\t"+str(nodes_list[i][0])+"\t"+str(nodes_list[i][1]))
 
-	parent_index=nodes_list[goal_node-1][1]
 
 
+
+
+	#parent_index=nodes_list[goal_node-1][1]
+	#print(parent_index)
+
+	# Backtrack from Goal to Start
 	victorypath=[]
-	while (parent_index>0):
-		k=nodes_list[parent_index][1]
-		victorypath.append(nodes_list[k][0])
-		parent_index=nodes_list[k][1]
+	victorypath.append(nodes_list[-1][0]) #Goal
+	parent=nodes_list[-1][1] #parent to the goal
+	while (parent != -1):
+		victorypath.append(nodes_list[parent][0])
+		parent=nodes_list[parent][1]
+
+		# k=nodes_list[parent_index][1]
+		# print(nodes_list[parent_index])
+		# victorypath.append(nodes_list[k][0])
+		# parent_index=nodes_list[k][1]
 
 	# Reverse the path so its from start to goal
 	victorypath.reverse()
