@@ -45,7 +45,7 @@ printboard(initialboard) #nodePath should start with the initial configuration
 
 #queue - boards we want to try. Will exhaust itself when we run out of possible moves
 #nodes_list - a list of lists. Each 2 element sublist contains the new board and it's parent index
-#parent_node = index of the parent board config as stored in nodes_list (index of node_list)
+#parent_node = index of the parent board config as stored in nodes_list (index of nodes_list)
 #board_tracker - a set (for speed) of all of the tried boards
 
 board_tracker=set()
@@ -80,18 +80,38 @@ while queue:
 			#Is it the goal?
 			if(myboard[b] == square2flat(goal)):
 				print("Goal found!")
-
+				goal_node=len(nodes_list)#-1 #-1 to compensate for 0 index
+				print(goal_node)
 				#Clear everything else so the program stops here
 				queue.clear()
 				found_goal=True
 				break
 
-		parent_node+=1
+	parent_node+=1
 
 if found_goal==False:
 	print("No solution found :(")
 
+else:
+	print("Printing solution to file now...")
 
+	parent_index=nodes_list[goal_node-1][1]
+	# print(parent_index)
+	# print(nodes_list[parent_index])
+
+while (parent_index>0):
+	k=nodes_list[parent_index][1]
+	victorypath=[]
+	victorypath.append(nodes_list[k][0])
+	parent_index=nodes_list[k][1]
+	print(parent_index)
+
+	# Reverse the path so its from start to goal
+	victorypath.reverse()
+	
+	for move in victorypath:
+		print(move)
+		printboard(move)
 
 end = datetime.now()
 runtime=end-start
