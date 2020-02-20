@@ -9,9 +9,7 @@ from datetime import datetime
 import collections
 
 #import my packages
-from printboard import printboard
-from printboard import flatboard
-from printboard import PrintNodesFile
+from printboard import*
 import actions
 from verbose import verbose
 from board_switcher import flat2square
@@ -73,6 +71,7 @@ while queue:
 		if (myboard[b] is not None) and (myboard[b] not in board_tracker):
 			board_tracker.add(myboard[b]) #add it to the board_tracker
 			PrintNodesFile(myboard[b])
+			PrintNodesInfo(len(nodes_list)-1, parent_node)
 			nodes_list.append([myboard[b],parent_node])
 			queue.append(len(nodes_list)-1)
 
