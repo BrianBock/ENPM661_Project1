@@ -50,4 +50,3 @@ def square2flat(squareBoard):
 
 
 
-flat2square("147258360")
