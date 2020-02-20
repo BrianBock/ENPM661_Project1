@@ -4,7 +4,7 @@ from board_switcher import flat2square
 
 # Create nodePath.txt file, which will house all of the moves we make
 nodePathfile=open("nodePath.txt","a+") #a+ for append. Be sure to delete the file from previous runs before starting
-
+nodesFile=open("Nodes.txt","a+")
 
 def flatboard(board):
 	"""This function takes an 8 puzzle board and converts it to a linear string
@@ -82,6 +82,28 @@ def printboard(board):
 	spaceboard=spaceboard+"\n"
 	# verbose(flatboard_clean)
 	nodePathfile.write(spaceboard)
+
+
+
+def PrintNodesFile(board):
+	"""This function takes an 8 puzzle board and writes it to a file
+	"""
+	#board=flat2square(board)
+	# Board gets written to file 
+	# 1 2 3
+	# 4 5 6
+	# 7 8 0
+	# becomes: 
+	# 1 4 7 2 5 8 3 6 0
+
+	#flatboard_clean=flatboard(board)+"\n"
+	spaceboard=""
+	for i in range (0,len(board)):
+		spaceboard=spaceboard+str(board[i])+" "
+
+	spaceboard=spaceboard+"\n"
+	# verbose(flatboard_clean)
+	nodesFile.write(spaceboard)
 
 
 
