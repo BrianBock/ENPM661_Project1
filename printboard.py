@@ -5,6 +5,7 @@ from board_switcher import flat2square
 # Create nodePath.txt file, which will house all of the moves we make
 nodePathfile=open("nodePath.txt","a+") #a+ for append. Be sure to delete the file from previous runs before starting
 nodesFile=open("Nodes.txt","a+")
+nodesInfoFile=open("NodesInfo.txt","a+")
 
 def flatboard(board):
 	"""This function takes an 8 puzzle board and converts it to a linear string
@@ -105,6 +106,11 @@ def PrintNodesFile(board):
 	# verbose(flatboard_clean)
 	nodesFile.write(spaceboard)
 
+
+def PrintNodesInfo(child, parent):
+	cost=0
+	output=str(child)+" "+str(parent)+" "+srt(cost)
+	nodesInfoFile.write(output)
 
 
 
