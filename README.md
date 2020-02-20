@@ -12,5 +12,7 @@ If you'd like to toggle more print statements (Verbose mode), open "verbose.py" 
 
 If you'd like to change the puzzle, open "main.py". You can edit the goal puzzle or the start puzzle. 
 
+This project is accesible on Github at https://github.com/BrianBock/ENPM661_Project1
+
 
 Libraries used: numpy, math, datetime, collections
