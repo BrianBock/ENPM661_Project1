@@ -10,5 +10,7 @@ This program solves any 8 puzzle. To run this program, run "main.py". This must 
 
 If you'd like to toggle more print statements (Verbose mode), open "verbose.py" and change 'verbose=True' in line 4. This additional output will make the program much more informative, but will take considerably longer to complete. For speed, keep 'verbose=False'
 
+If you'd like to change the puzzle, open "main.py". You can edit the goal puzzle or the start puzzle. 
+
 
 Libraries used: numpy, math, datetime, collections
