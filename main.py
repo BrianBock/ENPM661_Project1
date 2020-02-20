@@ -11,6 +11,7 @@ import collections
 #import my packages
 from printboard import printboard
 from printboard import flatboard
+from printboard import PrintNodesFile
 import actions
 from verbose import verbose
 from board_switcher import flat2square
@@ -71,6 +72,7 @@ while queue:
 		# Don't want empty entries and don't want any repeat entries
 		if (myboard[b] is not None) and (myboard[b] not in board_tracker):
 			board_tracker.add(myboard[b]) #add it to the board_tracker
+			PrintNodesFile(myboard[b])
 			nodes_list.append([myboard[b],parent_node])
 			queue.append(len(nodes_list)-1)
 
