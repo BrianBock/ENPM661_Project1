@@ -96,8 +96,8 @@ if found_goal==False:
 else:
 	print("Printing solution to file now...")
 	
-	for i in range (0,len(nodes_list)):
-		print(str(i)+"\t"+str(nodes_list[i][0])+"\t"+str(nodes_list[i][1]))
+	# for i in range (0,len(nodes_list)):
+	# 	print(str(i)+"\t"+str(nodes_list[i][0])+"\t"+str(nodes_list[i][1]))
 
 
 
