@@ -27,10 +27,10 @@ start = datetime.now()
 # Set up board and goal
 height=3
 width=height #board must be square
-goal=np.array([[1,2,3],[8,0,4],[7,6,5]])
+goal=np.array([[1,2,3],[4,5,6],[7,8,0]])
 
 
-initialboard=np.array([[2,8,1],[0,4,3],[7,6,5]])
+initialboard=np.array([[0,6,5],[2,1,4],[3,8,7]])
 
 print("Start is: "+str(square2flat(initialboard)))
 print("Goal is:  "+str(square2flat(goal)))
@@ -125,7 +125,7 @@ else:
 	victorypath.reverse()
 	
 	# Print out all of the moves
-	print("Done in "+str(len(victorypath))+" moves! Here's how I got to the goal:")
+	print("Done in "+str(len(victorypath)-1)+" moves! Here's how I got to the goal:")
 	print("Start Node:")
 	for count, move in enumerate(victorypath):
 		#print(move)
