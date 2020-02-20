@@ -25,6 +25,12 @@ start = datetime.now()
 # Set up board and goal
 height=3
 width=height #board must be square
+
+	# 1 2 3
+	# 4 5 6
+	# 7 8 0
+	# becomes: 
+	# [[1,2,3],[4,5,6],[7,8,0]]
 goal=np.array([[1,2,3],[4,5,6],[7,8,0]])
 
 
