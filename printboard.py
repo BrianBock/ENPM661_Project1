@@ -109,7 +109,7 @@ def PrintNodesFile(board):
 
 def PrintNodesInfo(child, parent):
 	cost=0
-	output=str(child)+" "+str(parent)+" "+srt(cost)
+	output=str(child)+" "+str(parent)+" "+str(cost)+"\n"
 	nodesInfoFile.write(output)
 
 
